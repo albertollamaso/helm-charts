@@ -57,7 +57,8 @@ serviceAccount:
 # Specifies environment variables to be added to the kafka-exporter container.
 # Environment variables can be defined as a list of either key-value pairs or
 # using valueFrom to reference a secret or config map.
-env: []
+env:
+  []
   # - name: <ENV_VAR_NAME>
   #   value: <value>
   # - name: PASSWORD
@@ -112,7 +113,7 @@ prometheus:
     additionalLabels: {}
     targetLabels: []
     # Relabel configs to apply to target's labelset before the target gets scraped.
-    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.RelabelConfig
+    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.RelabelConfig
     relabelings: null
     # - sourceLabels: [__meta_kubernetes_pod_node_name]
     #   separator: ;
@@ -121,7 +122,7 @@ prometheus:
     #   replacement: $1
     #   action: replace
     # Metric relabeling is applied to samples as the last step before ingestion
-    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.RelabelConfig
+    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.RelabelConfig
     metricRelabelings: null
     # - sourceLabels: [__meta_kubernetes_pod_node_name]
     #   separator: ;
@@ -133,7 +134,8 @@ prometheus:
 # Additional labels for pod
 podLabels: {}
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -203,7 +205,8 @@ kafka:
   enabled: false
 
 # Set security context for the kafka-exporter pod. Useful when you need to adapt to an existing PSP
-securityContext: {}
+securityContext:
+  {}
   # fsGroup: 2000
   # runAsGroup: 10002
   # runAsUser: 10001
@@ -211,7 +214,8 @@ securityContext: {}
   #   type: RuntimeDefault
 
 # Set securityContext for the kafka-exporter container
-containerSecurityContext: {}
+containerSecurityContext:
+  {}
   # allowPrivilegeEscalation: false
   # capabilities:
   #   drop: ["all"]

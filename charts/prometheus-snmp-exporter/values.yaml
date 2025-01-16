@@ -21,7 +21,8 @@ topologySpreadConstraints: []
 namespaceOverride: ""
 
 ## Security context to be added to snmp-exporter pods
-securityContext: {}
+securityContext:
+  {}
   # fsGroup: 1000
   # runAsUser: 1000
   # runAsNonRoot: true
@@ -33,12 +34,14 @@ containerSecurityContext:
   readOnlyRootFilesystem: true
 
 ## Additional labels to add to all resources
-customLabels: {}
+customLabels:
+  {}
   # app: snmp-exporter
 
 # config:
 
-extraConfigmapMounts: []
+extraConfigmapMounts:
+  []
   # - name: snmp-exporter-configmap
   #   mountPath: /run/secrets/snmp-exporter
   #   subPath: snmp.yaml # (optional)
@@ -48,14 +51,16 @@ extraConfigmapMounts: []
 
 ## Additional init containers
 # These will be added to the prometheus-snmp-exporter pod.
-extraInitContainers: []
+extraInitContainers:
+  []
   # - name: init-myservice
   #   image: busybox:1.28
   #   command: [ 'sh', '-c', "sleep 10; done" ]
 
 ## Additional secret mounts
 # Defines additional mounts with secrets. Secrets must be manually created in the namespace.
-extraSecretMounts: []
+extraSecretMounts:
+  []
   # - name: secret-files
   #   mountPath: /run/secrets/snmp-exporter
   #   secretName: snmp-exporter-secret-files
@@ -81,7 +86,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name:
 
-resources: {}
+resources:
+  {}
   # limits:
   #   memory: 300Mi
   # requests:
@@ -115,12 +121,15 @@ ingress:
   className: ""
   ## Path type is required since version 1.18. Default: ImplementationSpecific.
   pathType: ""
-  hosts: []
+  hosts:
+    []
     # - chart-example.local
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  tls: []
+  tls:
+    []
     # Secrets must be manually created in the namespace.
     # - secretName: chart-example-tls
     #   hosts:
@@ -180,8 +189,9 @@ serviceMonitor:
 
   # Relabelings dynamically rewrite the label set of a target before it gets scraped.
   # Set if defined unless overriden by params.relabelings.
-  # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.RelabelConfig
-  relabelings: []
+  # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.RelabelConfig
+  relabelings:
+    []
     # - sourceLabels: [__address__]
     #   targetLabel: __param_target
     # - sourceLabels: [__param_target]
@@ -190,15 +200,17 @@ serviceMonitor:
   # Metric relabeling is applied to samples as the last step before ingestion.
   # Set if defined unless overriden by params.additionalMetricsRelabels.
   # This sets fixed relabel configs with action 'replace'.
-  additionalMetricsRelabels: {}
+  additionalMetricsRelabels:
+    {}
     # targetLabel1: replacementValue1
     # targetLabel2: replacementValue2
 
   # Metric relabeling is applied to samples as the last step before ingestion.
   # Set if defined unless overridden by params.additionalMetricsRelabelConfigs.
   # This allows setting arbitrary relabel configs.
-  # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.RelabelConfig
-  additionalMetricsRelabelConfigs: []
+  # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.RelabelConfig
+  additionalMetricsRelabelConfigs:
+    []
     # - sourceLabels: [__name__]
     #   targetLabel: __name__
     #   action: replace
@@ -206,15 +218,16 @@ serviceMonitor:
     #   replacement: prefix_$1
 
   # Label for selecting service monitors as set in Prometheus CRD.
-  # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.PrometheusSpec
+  # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.PrometheusSpec
   selector:
     prometheus: kube-prometheus
 
   # Retain the job and instance labels of the metrics retrieved by the snmp-exporter
-  # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.Endpoint
+  # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.Endpoint
   honorLabels: true
 
-  params: []
+  params:
+    []
     # Human readable URL that will appear in Prometheus / AlertManager
     # - name: localhost
     # The target that snmp will scrape
@@ -224,7 +237,7 @@ serviceMonitor:
     #     - if_mib
     # Map of labels for ServiceMonitor. Overrides value set in serviceMonitor.selector
     #   labels: {}
-          # release: kube-prometheus-stack
+    # release: kube-prometheus-stack
     # Scraping interval. Overrides value set in serviceMonitor.interval
     #   interval: 30s
     # Scrape timeout. Overrides value set in serviceMonitor.scrapeTimeout
@@ -251,7 +264,8 @@ serviceMonitor:
     scrapeTimeout: 30s
 
 # Extra manifests to deploy as an array
-extraManifests: []
+extraManifests:
+  []
   # - |
   #   apiVersion: v1
   #   kind: ConfigMap

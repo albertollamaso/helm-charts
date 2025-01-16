@@ -40,7 +40,8 @@ global:
 kubeRBACProxy:
   enabled: false
   ## Set environment variables as name/value pairs
-  env: {}
+  env:
+    {}
     # VARIABLE: value
   image:
     registry: quay.io
@@ -72,7 +73,8 @@ kubeRBACProxy:
   # Configure a hostPort. If true, hostPort will be enabled in the container and set to proxyEndpointsPort.
   enableProxyEndpointsHostPort: false
 
-  resources: {}
+  resources:
+    {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -86,7 +88,8 @@ kubeRBACProxy:
 
   ## Additional volume mounts in the kube-rbac-proxy container
   ## See extraVolumes below
-  extraVolumeMounts: []
+  extraVolumeMounts:
+    []
     # - name: extra-volume
     #   mountPath: /extra
     #   readOnly: true
@@ -179,11 +182,11 @@ prometheus:
     jobLabel: ""
 
     # List of pod labels to add to node exporter metrics
-    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#servicemonitor
+    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#servicemonitor
     podTargetLabels: []
 
     # List of target labels to add to node exporter metrics
-    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#servicemonitor
+    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#servicemonitor
     targetLabels: []
 
     scheme: http
@@ -232,7 +235,7 @@ prometheus:
     labelValueLengthLimit: 0
 
   # PodMonitor defines monitoring for a set of pods.
-  # ref. https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.PodMonitor
+  # ref. https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.PodMonitor
   # Using a PodMonitor may be preferred in some environments where there is very large number
   # of Node Exporter endpoints (1000+) behind a single service.
   # The PodMonitor is disabled by default. When switching from ServiceMonitor to PodMonitor,
@@ -273,10 +276,10 @@ prometheus:
     # TLS configuration to use when scraping the endpoint.
     tlsConfig: {}
     # Authorization section for this endpoint.
-    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.SafeAuthorization
+    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.SafeAuthorization
     authorization: {}
     # OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.
-    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.OAuth2
+    # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#monitoring.coreos.com/v1.OAuth2
     oauth2: {}
 
     # ProxyURL eg http://proxyserver:2195. Directs scrapes through proxy to this endpoint.
@@ -327,7 +330,8 @@ updateStrategy:
   rollingUpdate:
     maxUnavailable: 1
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -471,7 +475,6 @@ terminationMessageParams:
   # If enabled, specify the policy for termination messages
   terminationMessagePolicy: File
 
-
 ## Assign a PriorityClassName to pods if set
 # priorityClassName: ""
 
@@ -584,14 +587,15 @@ verticalPodAutoscaler:
   # memory: 100Mi
 
   # updatePolicy:
-    # Specifies minimal number of replicas which need to be alive for VPA Updater to attempt pod eviction
-    # minReplicas: 1
-    # Specifies whether recommended updates are applied when a Pod is started and whether recommended updates
-    # are applied during the life of a Pod. Possible values are "Off", "Initial", "Recreate", and "Auto".
-    # updateMode: Auto
+  # Specifies minimal number of replicas which need to be alive for VPA Updater to attempt pod eviction
+  # minReplicas: 1
+  # Specifies whether recommended updates are applied when a Pod is started and whether recommended updates
+  # are applied during the life of a Pod. Possible values are "Off", "Initial", "Recreate", and "Auto".
+  # updateMode: Auto
 
 # Extra manifests to deploy as an array
-extraManifests: []
+extraManifests:
+  []
   # - |
   #   apiVersion: v1
   #   kind: ConfigMap
@@ -601,7 +605,8 @@ extraManifests: []
   #     extra-data: "value"
 
 ## Extra volumes to become available in the pod
-extraVolumes: []
+extraVolumes:
+  []
   # - name: extra-volume
   #   secret:
   #     defaultMode: 420
@@ -609,7 +614,8 @@ extraVolumes: []
   #     secretName: node-exporter-secret
 
 ## Extra volume mounts in the node-exporter container
-extraVolumeMounts: []
+extraVolumeMounts:
+  []
   # - name: extra-volume
   #   mountPath: /extra
   #   readOnly: true
